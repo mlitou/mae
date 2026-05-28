@@ -1,12 +1,12 @@
 [
   {
     "titre": "Oneirica I",
-    "image": "images/oneirica1.jpg",
+    "image": "Oiseaux.png",
     "prix": 120,
     "format": "A3",
-    "categorie": "serie",
-    "serie": "Oneirica",
-    "annee": 2024,
+    "categorie": "Original Piece",
+    "serie": "Birds",
+    "annee": 2026,
     "disponible": true
   },
   {
