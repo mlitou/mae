@@ -22,13 +22,13 @@
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; justify-content: space-between; align-items: center;
       padding: 1.5rem 3rem;
-      background: --white;
+      background: var(--white);
       border-bottom: 0.5px solid rgba(0,0,0,0.08);
     }
     .logo { font-family: 'Montserrat', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer; }
     .nav-links { display: flex; gap: 2.5rem; }
     .nav-links a { font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 400; text-decoration: none; color: var(--black); opacity: 0.4; cursor: pointer; transition: opacity 0.3s; }
-    .nav-links a:hover, .nav-links a.active { opacity: 100; }
+    .nav-links a:hover, .nav-links a.active { opacity: 1; }
 
     /* PAGES */
     .page { display: none; padding-top: 80px; min-height: 100vh; animation: fadeIn 0.45s ease; }
