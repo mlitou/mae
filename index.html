@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maé Litou — Illustrations & Art digital</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black: #0a0a0a;
+      --white: #f9f8f6;
+      --gray: #c0bfbc;
+      --lightgray: #e8e7e4;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--white); color: var(--black); font-family: 'Montserrat', sans-serif; font-weight: 300; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.5rem 3rem;
+      background: rgba(249,248,246,0.93); backdrop-filter: blur(8px);
+      border-bottom: 0.5px solid rgba(0,0,0,0.08);
+    }
+    .logo { font-family: 'Montserrat', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer; }
+    .nav-links { display: flex; gap: 2.5rem; }
+    .nav-links a { font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 400; text-decoration: none; color: var(--black); opacity: 0.4; cursor: pointer; transition: opacity 0.3s; }
+    .nav-links a:hover, .nav-links a.active { opacity: 1; }
+
+    /* PAGES */
+    .page { display: none; padding-top: 80px; min-height: 100vh; animation: fadeIn 0.45s ease; }
+    .page.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* ── HOME ── */
+    .hero {
+      position: relative; height: calc(100vh - 80px);
+      display: flex; flex-direction: column; justify-content: center; overflow: hidden;
+    }
+    .hero-text { padding: 0 3rem; z-index: 2; }
+    .hero-eyebrow { font-size: 0.6rem; letter-spacing: 0.35em; text-transform: uppercase; font-weight: 400; color: var(--gray); margin-bottom: 1.5rem; }
+    .hero-title { font-family: 'Montserrat', sans-serif; font-size: clamp(3rem, 7.5vw, 6.5rem); font-weight: 800; line-height: 0.95; letter-spacing: -0.03em; text-transform: uppercase; margin-bottom: 2rem; }
+    .hero-sub { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 300; color: var(--gray); max-width: 300px; line-height: 2; }
+    .hero-deco {
+      position: absolute; right: 3rem; top: 50%; transform: translateY(-50%);
+      width: 38%; height: 70%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-deco img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .hero-deco-placeholder { width: 100%; height: 100%; background: var(--lightgray); display: flex; align-items: center; justify-content: center; font-family: 'Montserrat', sans-serif; font-weight: 300; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gray); }
+    .hero-scroll { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; opacity: 0.3; }
+    .hero-scroll span { font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; }
+    .scroll-line { width: 0.5px; height: 40px; background: var(--black); animation: scrollAnim 2s ease-in-out infinite; }
+    @keyframes scrollAnim { 0%,100%{transform:scaleY(1);opacity:0.3;} 50%{transform:scaleY(0.4);opacity:0.8;} }
+
+    /* MARQUEE */
+    .marquee-wrap { overflow: hidden; border-top: 0.5px solid var(--lightgray); border-bottom: 0.5px solid var(--lightgray); padding: 0.8rem 0; }
+    .marquee-track { display: flex; white-space: nowrap; animation: marquee 22s linear infinite; }
+    .marquee-track span { font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gray); padding: 0 3rem; }
+    @keyframes marquee { from{transform:translateX(0);} to{transform:translateX(-50%);} }
+
+    /* CAROUSEL */
+    .carousel-section { padding: 5rem 3rem; border-top: 0.5px solid var(--lightgray); }
+    .section-label { font-size: 0.62rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gray); margin-bottom: 2.5rem; }
+    .carousel-track { display: flex; gap: 1.5rem; overflow-x: auto; scrollbar-width: none; cursor: grab; -webkit-overflow-scrolling: touch; }
+    .carousel-track::-webkit-scrollbar { display: none; }
+    .carousel-track.grabbing { cursor: grabbing; }
+    .carousel-item { flex: 0 0 300px; height: 380px; background: var(--lightgray); position: relative; overflow: hidden; border: 0.5px solid rgba(0,0,0,0.06); }
+    .carousel-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .carousel-item-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-family: 'Montserrat', sans-serif; font-weight: 300; color: var(--gray); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; }
+    .carousel-item-label { position: absolute; bottom: 0; left: 0; right: 0; padding: 1rem 1.2rem; background: linear-gradient(transparent, rgba(249,248,246,0.95)); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; }
+
+    /* HOME PREVIEW GRID */
+    .preview-section { padding: 0 0 6rem; }
+    .preview-header { display: flex; justify-content: space-between; align-items: baseline; padding: 4rem 3rem 2rem; }
+    .preview-header .section-label { margin-bottom: 0; }
+    .preview-see-all { font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 400; color: var(--gray); background: none; border: none; cursor: pointer; transition: color 0.2s; }
+    .preview-see-all:hover { color: var(--black); }
+    .preview-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--lightgray); }
+    .preview-cell { background: var(--white); position: relative; overflow: hidden; cursor: pointer; }
+    .preview-cell:hover .preview-cell-overlay { opacity: 1; }
+    .preview-thumb { width: 100%; aspect-ratio: 1/1; background: var(--lightgray); display: flex; align-items: center; justify-content: center; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 300; color: var(--gray); overflow: hidden; }
+    .preview-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .preview-cell-overlay { position: absolute; inset: 0; background: rgba(10,10,10,0.75); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.3rem; opacity: 0; transition: opacity 0.3s ease; }
+    .preview-cell-overlay .pc-title { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white); }
+    .preview-cell-overlay .pc-price { font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 300; color: rgba(249,248,246,0.6); }
+
+
+    .univers-layout { display: grid; grid-template-columns: 1fr 1fr; min-height: calc(100vh - 80px); }
+    .univers-photo { background: var(--lightgray); display: flex; align-items: center; justify-content: center; overflow: hidden; border-right: 0.5px solid var(--lightgray); }
+    .univers-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .univers-photo-placeholder { font-family: 'Montserrat', sans-serif; font-weight: 300; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gray); }
+    .univers-content { padding: 5rem 4rem; display: flex; flex-direction: column; justify-content: center; }
+    .univers-content h1 { font-family: 'Montserrat', sans-serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; letter-spacing: -0.02em; text-transform: uppercase; margin-bottom: 0.5rem; line-height: 1.0; }
+    .univers-content .subtitle { font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase; font-weight: 400; color: var(--gray); margin-bottom: 3rem; }
+    .divider { width: 40px; height: 0.5px; background: var(--black); margin-bottom: 3rem; opacity: 0.3; }
+    .univers-content p { font-size: 0.85rem; line-height: 2; color: rgba(10,10,10,0.65); margin-bottom: 1.5rem; }
+
+    /* ── À VENDRE ── */
+    .vendre-header { padding: 4rem 3rem 2rem; border-bottom: 0.5px solid var(--lightgray); display: flex; justify-content: space-between; align-items: flex-end; }
+    .vendre-header h1 { font-family: 'Montserrat', sans-serif; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; letter-spacing: -0.02em; text-transform: uppercase; }
+    .filter-row { display: flex; gap: 1.5rem; }
+    .filter-btn { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; background: none; border: 0.5px solid transparent; padding: 0.4rem 0.8rem; cursor: pointer; color: var(--gray); transition: all 0.2s; font-family: 'Montserrat', sans-serif; }
+    .filter-btn.on { border-color: var(--black); color: var(--black); }
+    .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+    .gallery-item { position: relative; overflow: hidden; border: 0.25px solid var(--lightgray); cursor: pointer; }
+    .gallery-item.vendu { opacity: 0.5; }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+    .gallery-thumb { width: 100%; aspect-ratio: 3/4; background: var(--lightgray); display: flex; align-items: center; justify-content: center; font-family: 'Montserrat', sans-serif; font-weight: 300; color: var(--gray); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; overflow: hidden; }
+    .gallery-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .gallery-overlay { position: absolute; inset: 0; background: rgba(10,10,10,0.88); display: flex; flex-direction: column; justify-content: flex-end; padding: 1.5rem; opacity: 0; transition: opacity 0.35s ease; }
+    .gallery-overlay .g-title { font-family: 'Montserrat', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--white); margin-bottom: 0.25rem; }
+    .gallery-overlay .g-size { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(249,248,246,0.45); margin-bottom: 1rem; }
+    .gallery-overlay .g-price { font-size: 0.75rem; letter-spacing: 0.1em; color: var(--white); }
+    .gallery-overlay .g-vendu { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(249,248,246,0.4); }
+    .gallery-overlay .g-btn { margin-top: 0.8rem; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; background: none; border: 0.5px solid rgba(249,248,246,0.4); color: var(--white); padding: 0.5rem 1rem; cursor: pointer; transition: background 0.2s; font-family: 'Montserrat', sans-serif; }
+    .gallery-overlay .g-btn:hover { background: rgba(249,248,246,0.1); }
+    .no-results { padding: 4rem 3rem; font-size: 0.75rem; color: var(--gray); letter-spacing: 0.15em; text-transform: uppercase; }
+
+    /* ── CONTACT ── */
+    .contact-layout { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: calc(100vh - 80px); text-align: center; padding: 3rem; }
+    .contact-layout h1 { font-family: 'Montserrat', sans-serif; font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 800; letter-spacing: -0.02em; text-transform: uppercase; margin-bottom: 1rem; }
+    .contact-sub { font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 300; color: var(--gray); margin-bottom: 4rem; max-width: 340px; line-height: 2.2; }
+    .contact-email { font-family: 'Montserrat', sans-serif; font-size: 1.1rem; font-weight: 600; letter-spacing: 0.03em; border-bottom: 0.5px solid var(--black); padding-bottom: 0.5rem; text-decoration: none; color: var(--black); }
+    .contact-note { font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gray); margin-top: 3rem; }
+    .socials { display: flex; gap: 2rem; margin-top: 5rem; }
+    .socials a { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gray); text-decoration: none; transition: color 0.2s; }
+    .socials a:hover { color: var(--black); }
+
+    /* ── HAMBURGER ── */
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+    .hamburger span { display: block; width: 22px; height: 1px; background: var(--black); transition: all 0.3s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+    .mobile-menu { display: none; position: fixed; top: 60px; left: 0; right: 0; z-index: 99; background: rgba(249,248,246,0.98); backdrop-filter: blur(8px); border-bottom: 0.5px solid rgba(0,0,0,0.08); flex-direction: column; padding: 1.5rem 2rem; gap: 1.8rem; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; color: var(--black); opacity: 0.45; cursor: pointer; }
+    .mobile-menu a.active { opacity: 1; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; height: 60px; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .page { padding-top: 60px; }
+
+      /* Hero */
+      .hero { height: auto; min-height: calc(100svh - 60px); padding: 3rem 0 5rem; }
+      .hero-text { padding: 0 1.5rem; }
+      .hero-title { font-size: clamp(2.8rem, 12vw, 5rem); }
+      .hero-deco { display: none; }
+
+      /* Carousel */
+      .carousel-section { padding: 3rem 1.5rem; }
+      .carousel-item { flex: 0 0 220px; height: 280px; }
+
+      /* Univers */
+      .univers-layout { grid-template-columns: 1fr; min-height: auto; }
+      .univers-photo { height: 60vw; min-height: 240px; border-right: none; border-bottom: 0.5px solid var(--lightgray); }
+      .univers-content { padding: 2.5rem 1.5rem 3rem; }
+      .univers-content h1 { font-size: 2.2rem; }
+      .univers-content .subtitle { margin-bottom: 2rem; }
+      .divider { margin-bottom: 2rem; }
+
+      /* Galerie */
+      .vendre-header { flex-direction: column; align-items: flex-start; gap: 1.2rem; padding: 2.5rem 1.5rem 1.5rem; }
+      .vendre-header h1 { font-size: 2.5rem; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-overlay { opacity: 1; background: linear-gradient(transparent 45%, rgba(10,10,10,0.8)); }
+
+      /* Contact */
+      .contact-layout { padding: 3rem 1.5rem; min-height: calc(100svh - 60px); }
+      .contact-layout h1 { font-size: 2.8rem; }
+      .contact-email { font-size: 1.05rem; word-break: break-all; }
+      .contact-sub { margin-bottom: 2.5rem; }
+      .socials { margin-top: 3rem; flex-wrap: wrap; justify-content: center; gap: 1.5rem; }
+    }
+
+    @media (max-width: 420px) {
+      .gallery-grid { grid-template-columns: 1fr; }
+      .carousel-item { flex: 0 0 78vw; height: 260px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="logo" onclick="show('home')"> - Maé Litou </div>
+  <div class="nav-links">
+    <a onclick="show('home')" id="nav-home" class="active">Accueil</a>
+    <a onclick="show('univers')" id="nav-univers">Mon univers</a>
+    <a onclick="show('vendre')" id="nav-vendre">À vendre</a>
+    <a onclick="show('contact')" id="nav-contact">Me contacter</a>
+  </div>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a onclick="showMobile('home')" id="mnav-home" class="active">Accueil</a>
+  <a onclick="showMobile('univers')" id="mnav-univers">Mon univers</a>
+  <a onclick="showMobile('vendre')" id="mnav-vendre">À vendre</a>
+  <a onclick="showMobile('contact')" id="mnav-contact">Me contacter</a>
+</div>
+
+<!-- ══ HOME ══ -->
+<div class="page active" id="page-home">
+  <div class="hero">
+    <div class="hero-text">
+      <p class="hero-eyebrow">Print Store</p>
+      <h1 class="hero-title">MAÉ<br>LITOU<br>Artworks</h1>
+      <p class="hero-sub">ink drawings, paintings & prints</p>
+    </div>
+    <div class="hero-deco" id="hero-deco">
+      <img src="file:///Users/maelitou/Desktop/site/zoiizo.png" alt=""> 
+    </div>
+    <div class="hero-scroll"><div class="scroll-line"></div><span>Scroll</span></div>
+  </div>
+
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <span>Illustration originale</span><span>·</span><span>Art digital</span><span>·</span><span>Œuvres uniques</span><span>·</span><span>Création graphique</span><span>·</span><span>Univers poétique</span><span>·</span>
+      <span>Illustration originale</span><span>·</span><span>Art digital</span><span>·</span><span>Œuvres uniques</span><span>·</span><span>Création graphique</span><span>·</span><span>Univers poétique</span><span>·</span>
+    </div>
+  </div>
+
+  <div class="carousel-section">
+    <p class="section-label">Sélection récente</p>
+    <div class="carousel-track" id="carousel"></div>
+  </div>
+</div>
+
+<!-- ══ MON UNIVERS ══ -->
+<div class="page" id="page-univers">
+  <div class="univers-layout">
+    <div class="univers-photo">
+     <img src="file:///Users/maelitou/Desktop/site/moi.png" alt="Portrait">
+    </div>
+    <div class="univers-content">
+      <h1>Mon univers</h1>
+      <p class="subtitle">Artiste illustratrice · Nantes</p>
+      <div class="divider"></div>
+      <p>Je m'appelle [Prénom Nom]. Mon travail naît dans l'espace entre ce qu'on voit et ce qu'on ressent — des images qui cherchent à ralentir le regard, à suspendre un instant.</p>
+      <p>Formée à [École / autodidacte], je travaille principalement en illustration digitale. Chaque pièce est une édition unique, pensée pour exister dans un espace réel.</p>
+      <p>Mon univers graphique puise dans la poésie, la nature, et les formes silencieuses. Je crois que l'image peut porter quelque chose que les mots ne disent pas.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══ À VENDRE ══ -->
+<div class="page" id="page-vendre">
+  <div class="vendre-header">
+    <h1>À vendre</h1>
+    <div class="filter-row">
+      <button class="filter-btn on" onclick="filterGallery('tout', this)">Tout</button>
+      <button class="filter-btn" onclick="filterGallery('serie', this)">Prints</button>
+      <button class="filter-btn" onclick="filterGallery('single', this)">Original Pieces</button>
+    </div>
+  </div>
+  <div class="gallery-grid" id="gallery"></div>
+  <div class="no-results" id="no-results" style="display:none">Aucune œuvre dans cette catégorie.</div>
+</div>
+
+<!-- ══ CONTACT ══ -->
+<div class="page" id="page-contact">
+  <div class="contact-layout">
+    <h1>Parlons-nous</h1>
+    <p class="contact-sub">Chaque pièce est unique. Pour toute question, commande, ou collaboration, écrivez-moi directement.</p>
+    <!-- Remplacer l'adresse email ci-dessous -->
+    <a class="contact-email" href="mailto:votre@email.com">votre@email.com</a>
+    <p class="contact-note">Réponse sous 48h · Envois France & international</p>
+    <div class="socials">
+      <a href="#">Instagram</a>
+      <a href="#">Behance</a>
+      <a href="#">Pinterest</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  /* ── Navigation ── */
+  function show(page) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+    document.getElementById('page-' + page).classList.add('active');
+    document.getElementById('nav-' + page).classList.add('active');
+  }
+
+  function toggleMenu() {
+    const btn = document.getElementById('hamburger');
+    const menu = document.getElementById('mobile-menu');
+    btn.classList.toggle('open');
+    menu.classList.toggle('open');
+  }
+
+  function showMobile(page) {
+    show(page);
+    document.querySelectorAll('.mobile-menu a').forEach(a => a.classList.remove('active'));
+    document.getElementById('mnav-' + page).classList.add('active');
+    document.getElementById('hamburger').classList.remove('open');
+    document.getElementById('mobile-menu').classList.remove('open');
+  }
+
+  /* ── Chargement des œuvres depuis oeuvres.json ── */
+  let oeuvres = [];
+  let currentFilter = 'tout';
+
+  fetch('oeuvres.json')
+    .then(r => r.json())
+    .then(data => {
+      oeuvres = data;
+      renderGallery();
+      renderCarousel();
+      renderPreviewGrid();
+    });
+
+  /* ── Galerie ── */
+  function renderGallery() {
+    const grid = document.getElementById('gallery');
+    const noRes = document.getElementById('no-results');
+    const filtered = currentFilter === 'tout'
+      ? oeuvres
+      : oeuvres.filter(o => o.categorie === currentFilter);
+
+    if (filtered.length === 0) {
+      grid.innerHTML = '';
+      noRes.style.display = 'block';
+      return;
+    }
+    noRes.style.display = 'none';
+
+    grid.innerHTML = filtered.map(o => `
+      <div class="gallery-item ${o.disponible ? '' : 'vendu'}">
+        <div class="gallery-thumb">
+          ${o.image
+            ? `<img src="${o.image}" alt="${o.titre}" loading="lazy">`
+            : o.titre}
+        </div>
+        <div class="gallery-overlay">
+          <p class="g-title">${o.titre}</p>
+          <p class="g-size">${o.format} · ${o.annee}</p>
+          ${o.disponible
+            ? `<p class="g-price">${o.prix} €</p>
+               <button class="g-btn" onclick="contactPour('${o.titre}')">Me contacter</button>`
+            : `<p class="g-vendu">— Vendu</p>`}
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function filterGallery(cat, btn) {
+    currentFilter = cat;
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('on'));
+    btn.classList.add('on');
+    renderGallery();
+  }
+
+  /* Clic "Me contacter" depuis la galerie → ouvre l'onglet contact */
+  function contactPour(titre) {
+    show('contact');
+  }
+
+  /* ── Carrousel (3 dernières œuvres disponibles) ── */
+  function renderCarousel() {
+    const track = document.getElementById('carousel');
+    const selection = oeuvres.filter(o => o.disponible).slice(0, 5);
+    track.innerHTML = selection.map(o => `
+      <div class="carousel-item">
+        ${o.image
+          ? `<img src="${o.image}" alt="${o.titre}" style="width:100%;height:100%;object-fit:cover;display:block;">`
+          : `<div class="carousel-item-placeholder">${o.titre}</div>`}
+        <div class="carousel-item-label">${o.titre} — ${o.annee}</div>
+      </div>
+    `).join('');
+    initCarousel();
+  }
+
+  /* ── Preview grid (home) ── */
+  function renderPreviewGrid() {
+    const grid = document.getElementById('preview-grid');
+    const selection = oeuvres.slice(0, 6);
+    grid.innerHTML = selection.map(o => `
+      <div class="preview-cell" onclick="show('vendre')">
+        <div class="preview-thumb">
+          ${o.image ? `<img src="${o.image}" alt="${o.titre}" loading="lazy">` : o.titre}
+        </div>
+        <div class="preview-cell-overlay">
+          <span class="pc-title">${o.titre}</span>
+          <span class="pc-price">${o.disponible ? o.prix + ' €' : 'Vendu'}</span>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  /* ── Drag carrousel ── */
+  function initCarousel() {
+    const track = document.getElementById('carousel');
+    let isDown = false, startX, scrollLeft;
+    track.addEventListener('mousedown', e => { isDown = true; track.classList.add('grabbing'); startX = e.pageX - track.offsetLeft; scrollLeft = track.scrollLeft; });
+    track.addEventListener('mouseleave', () => { isDown = false; track.classList.remove('grabbing'); });
+    track.addEventListener('mouseup', () => { isDown = false; track.classList.remove('grabbing'); });
+    track.addEventListener('mousemove', e => { if (!isDown) return; e.preventDefault(); const x = e.pageX - track.offsetLeft; track.scrollLeft = scrollLeft - (x - startX) * 1.5; });
+  }
+</script>
+</body>
+</html>

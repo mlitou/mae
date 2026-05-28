@@ -1,0 +1,62 @@
+[
+  {
+    "titre": "Oneirica I",
+    "image": "images/oneirica1.jpg",
+    "prix": 120,
+    "format": "A3",
+    "categorie": "serie",
+    "serie": "Oneirica",
+    "annee": 2024,
+    "disponible": true
+  },
+  {
+    "titre": "Passage",
+    "image": "images/passage.jpg",
+    "prix": 180,
+    "format": "50×70 cm",
+    "categorie": "single",
+    "serie": null,
+    "annee": 2024,
+    "disponible": true
+  },
+  {
+    "titre": "Oneirica II",
+    "image": "images/oneirica2.jpg",
+    "prix": 120,
+    "format": "A3",
+    "categorie": "serie",
+    "serie": "Oneirica",
+    "annee": 2024,
+    "disponible": true
+  },
+  {
+    "titre": "Fragment I",
+    "image": "images/fragment1.jpg",
+    "prix": 90,
+    "format": "A4",
+    "categorie": "single",
+    "serie": null,
+    "annee": 2023,
+    "disponible": true
+  },
+  {
+    "titre": "Série Nuit I",
+    "image": "images/nuit1.jpg",
+    "prix": 150,
+    "format": "30×40 cm",
+    "categorie": "serie",
+    "serie": "Nuit",
+    "annee": 2023,
+    "disponible": true
+  },
+  {
+    "titre": "Arbre",
+    "image": "images/arbre.jpg",
+    "prix": 200,
+    "format": "50×70 cm",
+    "categorie": "single",
+    "serie": null,
+    "annee": 2023,
+    "disponible": false
+  }
+]
