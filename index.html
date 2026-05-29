@@ -78,7 +78,7 @@
     .hg-title { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white); margin-bottom: 0.2rem; }
     .hg-price { font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 300; color: rgba(255,255,255,0.55); }
 
-    /* ── MON UNIVERS ── */
+    /* ── ABOUT ME ── */
     .univers-layout { display: grid; grid-template-columns: 1fr 1fr; min-height: calc(100vh - 80px); }
     .univers-photo { background: var(--lightgray); display: flex; align-items: center; justify-content: center; overflow: hidden; border-right: 0.5px solid var(--lightgray); }
     .univers-photo img { width: 100%; height: 100%; object-fit: cover; }
@@ -177,10 +177,10 @@
 <nav>
   <div class="logo" onclick="show('home')"> - Maé Litou </div>
   <div class="nav-links">
-    <a onclick="show('home')" id="nav-home" class="active">Accueil</a>
-    <a onclick="show('univers')" id="nav-univers">Mon univers</a>
+    <a onclick="show('home')" id="nav-home" class="active">Home</a>
+    <a onclick="show('univers')" id="nav-univers">About Me</a>
     <a onclick="show('vendre')" id="nav-vendre">Shop</a>
-    <a onclick="show('contact')" id="nav-contact">Me contacter</a>
+    <a onclick="show('contact')" id="nav-contact">Contact</a>
   </div>
   <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -188,10 +188,10 @@
 </nav>
 
 <div class="mobile-menu" id="mobile-menu">
-  <a onclick="showMobile('home')" id="mnav-home" class="active">Accueil</a>
-  <a onclick="showMobile('univers')" id="mnav-univers">Mon univers</a>
+  <a onclick="showMobile('home')" id="mnav-home" class="active">Home</a>
+  <a onclick="showMobile('univers')" id="mnav-univers">About Me</a>
   <a onclick="showMobile('vendre')" id="mnav-vendre">Shop</a>
-  <a onclick="showMobile('contact')" id="mnav-contact">Me contacter</a>
+  <a onclick="showMobile('contact')" id="mnav-contact">Contact</a>
 </div>
 
 <!-- ══ HOME ══ -->
@@ -208,35 +208,28 @@
     <div class="hero-scroll"><div class="scroll-line"></div><span>Scroll</span></div>
   </div>
 
-  <div class="marquee-wrap">
-    <div class="marquee-track">
-      <span>Illustration originale</span><span>·</span><span>Art digital</span><span>·</span><span>Œuvres uniques</span><span>·</span><span>Création graphique</span><span>·</span><span>Univers poétique</span><span>·</span>
-      <span>Illustration originale</span><span>·</span><span>Art digital</span><span>·</span><span>Œuvres uniques</span><span>·</span><span>Création graphique</span><span>·</span><span>Univers poétique</span><span>·</span>
-    </div>
-  </div>
-
   <div class="home-gallery-section">
     <div class="home-gallery-header">
       <p class="section-label">Sélection récente</p>
-      <button class="see-all-btn" onclick="show('vendre')">Voir tout →</button>
+      <button class="see-all-btn" onclick="show('vendre')">See All →</button>
     </div>
     <div class="home-gallery-grid" id="home-gallery"></div>
   </div>
 </div>
 
-<!-- ══ MON UNIVERS ══ -->
+<!-- ══ ABOUT ME ══ -->
 <div class="page" id="page-univers">
   <div class="univers-layout">
     <div class="univers-photo">
       <img src="moi.png" alt="Portrait">
     </div>
     <div class="univers-content">
-      <h1>Mon univers</h1>
+      <h1>About Me</h1>
       <p class="subtitle">Artiste illustratrice · Nantes</p>
       <div class="divider"></div>
-      <p>Je m'appelle [Prénom Nom]. Mon travail naît dans l'espace entre ce qu'on voit et ce qu'on ressent — des images qui cherchent à ralentir le regard, à suspendre un instant.</p>
-      <p>Formée à [École / autodidacte], je travaille principalement en illustration digitale. Chaque pièce est une édition unique, pensée pour exister dans un espace réel.</p>
-      <p>Mon univers graphique puise dans la poésie, la nature, et les formes silencieuses. Je crois que l'image peut porter quelque chose que les mots ne disent pas.</p>
+      <p>//</p>
+      <p>//</p>
+      <p>//</p>
     </div>
   </div>
 </div>
@@ -246,7 +239,7 @@
   <div class="vendre-header">
     <h1>Shop</h1>
     <div class="filter-row">
-      <button class="filter-btn on" onclick="filterGallery('tout', this)">Tout</button>
+      <button class="filter-btn on" onclick="filterGallery('All', this)">All</button>
       <button class="filter-btn" onclick="filterGallery('serie', this)">Prints</button>
       <button class="filter-btn" onclick="filterGallery('single', this)">Original Pieces</button>
     </div>
@@ -292,7 +285,7 @@
   }
 
   let oeuvres = [];
-  let currentFilter = 'tout';
+  let currentFilter = 'All';
 
   fetch('oeuvres.json')
     .then(r => r.json())
@@ -306,7 +299,7 @@
   function renderGallery() {
     const grid = document.getElementById('gallery');
     const noRes = document.getElementById('no-results');
-    const filtered = currentFilter === 'tout' ? oeuvres : oeuvres.filter(o => o.categorie === currentFilter);
+    const filtered = currentFilter === 'All' ? oeuvres : oeuvres.filter(o => o.categorie === currentFilter);
     if (filtered.length === 0) { grid.innerHTML = ''; noRes.style.display = 'block'; return; }
     noRes.style.display = 'none';
     grid.innerHTML = filtered.map(o => `
@@ -318,7 +311,7 @@
           <p class="g-title">${o.titre}</p>
           <p class="g-size">${o.format} · ${o.annee}</p>
           ${o.disponible
-            ? `<p class="g-price">${o.prix} €</p><button class="g-btn" onclick="contactPour('${o.titre}')">Me contacter</button>`
+            ? `<p class="g-price">${o.prix} €</p><button class="g-btn" onclick="contactPour('${o.titre}')">Contact</button>`
             : `<p class="g-vendu">— Vendu</p>`}
         </div>
       </div>`).join('');
