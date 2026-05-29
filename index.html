@@ -89,7 +89,7 @@
     .divider { width: 40px; height: 0.5px; background: var(--black); margin-bottom: 3rem; opacity: 0.3; }
     .univers-content p { font-size: 0.85rem; line-height: 2; color: rgba(10,10,10,0.65); margin-bottom: 1.5rem; }
 
-    /* ── À VENDRE ── */
+    /* ── SHOP ── */
     .vendre-header { padding: 4rem 3rem 2rem; border-bottom: 0.5px solid var(--lightgray); display: flex; justify-content: space-between; align-items: flex-end; }
     .vendre-header h1 { font-family: 'Montserrat', sans-serif; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; letter-spacing: -0.02em; text-transform: uppercase; }
     .filter-row { display: flex; gap: 1.5rem; }
@@ -179,7 +179,7 @@
   <div class="nav-links">
     <a onclick="show('home')" id="nav-home" class="active">Accueil</a>
     <a onclick="show('univers')" id="nav-univers">Mon univers</a>
-    <a onclick="show('vendre')" id="nav-vendre">À vendre</a>
+    <a onclick="show('vendre')" id="nav-vendre">Shop</a>
     <a onclick="show('contact')" id="nav-contact">Me contacter</a>
   </div>
   <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
@@ -190,7 +190,7 @@
 <div class="mobile-menu" id="mobile-menu">
   <a onclick="showMobile('home')" id="mnav-home" class="active">Accueil</a>
   <a onclick="showMobile('univers')" id="mnav-univers">Mon univers</a>
-  <a onclick="showMobile('vendre')" id="mnav-vendre">À vendre</a>
+  <a onclick="showMobile('vendre')" id="mnav-vendre">Shop</a>
   <a onclick="showMobile('contact')" id="mnav-contact">Me contacter</a>
 </div>
 
@@ -241,10 +241,10 @@
   </div>
 </div>
 
-<!-- ══ À VENDRE ══ -->
+<!-- ══ SHOP ══ -->
 <div class="page" id="page-vendre">
   <div class="vendre-header">
-    <h1>À vendre</h1>
+    <h1>Shop</h1>
     <div class="filter-row">
       <button class="filter-btn on" onclick="filterGallery('tout', this)">Tout</button>
       <button class="filter-btn" onclick="filterGallery('serie', this)">Prints</button>
@@ -302,7 +302,7 @@
       renderHomeGallery();
     });
 
-  /* ── Galerie "À vendre" ── */
+  /* ── Galerie "Shop" ── */
   function renderGallery() {
     const grid = document.getElementById('gallery');
     const noRes = document.getElementById('no-results');
